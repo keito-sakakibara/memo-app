@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>セクション1</title>
+    <style>
+        label {
+            display: block;
+        }
+        input[type="text"] {
+            margin-left: 1rem;
+        }
+        nav {
+            margin-top: 2rem;
+        }
+    </style>
+    <!-- 開発用 / エラーログなど開発時に有益なログが出る -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- 本番用 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
+</head>
+<body>
+
+<main id="app">
+    <h1 v-text="message">v-text</h1>
+    
+    <label>[v-model]<input type="text" v-model="message"></label>
+    <label>[v-bind]<input type="text" v-bind:value="message"></label>
+</main>
+
+<nav>
+    <a href="portal.html">ポータルに戻る</a>
+</nav>
+
+<script>
+    new Vue({
+        // elでVueをマウントするタグを指定します
+        el: '#app',
+        data: {
+            // Vue.jsでは、dataで宣言したプロパティはリアクティブになります
+            message: 'こんにちはVue.js',
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>セクション2</title>
+    <style>
+        h2 {
+            font-size: 1.2rem;
+        }
+        span {
+            margin-right: .5rem;
+        }
+        nav {
+            margin-top: 2rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<main id="app">
+    <h1>v-ifとv-show</h1>
+
+    <label><input type="checkbox" v-model="checkbox">表示する</label>
+
+    <label><input type="text" v-model="text">空文字以外は表示する</label>
+
+    <div v-if="checkbox || text !== ''">
+        <h2>v-if表示</h2>
+    </div>
+    <div v-else>
+        <h2>v-else表示</h2>
+    </div>
+
+    <div v-show="checkbox ||text !== ''">
+        <h2>v-show表示</h2>
+    </div>
+</main>
+
+<nav>
+    <a href="portal.html">ポータルに戻る</a>
+</nav>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            checkbox: false,
+            text: '',
+        },
+    })
+</script>
+</body>
+</html>

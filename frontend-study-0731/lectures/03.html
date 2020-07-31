@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>セクション3</title>
+    <style>
+        span {
+            padding: 0 .5rem;
+            background-color: #54ff36;
+        }
+        nav {
+            margin-top: 2rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<main id="app">
+    <h1>メソッドとアクション</h1>
+
+    <button v-on:click="alert">Alert</button>
+    <input type="text" v-on:keydown="keydown" v-on:keyup="keyup" v-on:keydown.enter="enter">
+    <span v-show="isPushedA">aを押してます</span>
+</main>
+
+<nav>
+    <a href="portal.html">ポータルに戻る</a>
+</nav>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isPushedA: false,
+        },
+        methods: {
+            alert() {
+                alert('Alert');
+            },
+            keydown(event) {
+                if (event.key === 'a') {
+                    this.isPushedA = true;
+                }
+            },
+            keyup(event) {
+                if (event.key === 'a') {
+                    this.isPushedA = false;
+                }
+            },
+            enter() {
+                alert('Enterを押しました');
+            },
+        },
+    })
+</script>
+</body>
+</html>

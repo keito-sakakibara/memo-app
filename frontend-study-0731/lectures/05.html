@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>セクション5</title>
+    <style>
+        nav {
+            margin-top: 2rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<main id="app">
+    <h1>LocalStorage</h1>
+
+    <p>
+        文字を入力して「設定」を押すと、LocalStorageにlectureというキーで文字が保存されます。<br>
+        Chromeデベロッパーツールの「Application -> Storage -> LocalStorage -> file://」で確認できます。
+    </p>
+    <input type="text" v-model="text">
+    <button v-on:click="input">設定</button>
+    <button v-on:click="clear">削除</button>
+
+    <p>
+        一度設定を押すと、LocalStorageに値が保存されるので、ブラウザをリロードしてもinputに文字が残ります。
+    </p>
+</main>
+
+<nav>
+    <a href="portal.html">ポータルに戻る</a>
+</nav>
+
+<script>
+    let text = '';
+
+    // LocalStorageに保存済みの値を取得
+    // 対象キーが存在しない場合、nullが返却される
+    if (localStorage.getItem('lecture') !== null) {
+        text = JSON.parse(localStorage.getItem('lecture'));
+    }
+
+    new Vue({
+        el: '#app',
+        data: {
+            text
+        },
+        methods: {
+            input() {
+                // LocalStorageに値を保存
+                // Webサイトのドメインに対して、keyとvalueの組み合わせで保存する
+                localStorage.setItem('lecture', JSON.stringify(this.text));
+            },
+            clear() {
+                // LocalStorageの削除は、keyを指定して行う
+                localStorage.removeItem('lecture');
+            },
+        },
+    })
+</script>
+</body>
+</html>

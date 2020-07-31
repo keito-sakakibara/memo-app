@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>セクション4</title>
+    <style>
+        h2 {
+            font-size: 1.2rem;
+        }
+        span {
+            margin-right: .5rem;
+        }
+        nav {
+            margin-top: 2rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<main id="app">
+    <h1>Vue.jsのループ</h1>
+    <div>
+        <h2>数値</h2>
+        <span class="for-item" v-for="n in 5">{{ n }}</span>
+    </div>
+    <div>
+        <h2>プリミティブ配列</h2>
+        <span class="for-item" v-for="(p, index) in primitiveArray">{{ index }}:{{ p }}</span>
+    </div>
+    <div>
+        <h2>オブジェクト数値</h2>
+        <span class="for-item" v-for="obj in objectArray">{{ obj.name }}:{{ obj.age }}</span>
+    </div>
+    <div>
+        <h2>オブジェクト</h2>
+        <span class="for-item" v-for="(val, key) in object">{{ key }}:{{ val }}</span>
+    </div>
+</main>
+
+<nav>
+    <a href="portal.html">ポータルに戻る</a>
+</nav>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            primitiveArray: ['a', 'b', 'c'],
+            objectArray: [{name: 'hoge', age: 10}, {name: 'piyo', age: 8}],
+            object: {name: 'hoge', age: 10},
+        },
+    })
+</script>
+</body>
+</html>

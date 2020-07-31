@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>セクション6</title>
+    <style>
+        .lights {
+            display: inline-block;
+            text-align: center;
+
+            width: 2rem;
+            height: 2rem;
+
+            background-color: #747474;
+        }
+
+        .lights.active {
+            background-color: #54ff36;
+        }
+
+        nav {
+            margin-top: 2rem;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<main id="app">
+    <h1>リアクティブな配列代入</h1>
+
+    <a href="https://jp.vuejs.org/v2/guide/reactivity.html">リアクティブの探求</a>
+
+    <hr>
+
+    <div>
+        <h2>配列代入（変更を検知できないので、ランプが連動しない）</h2>
+        <button type="button" @click="substitution(0)">ボタン0</button>
+        <button type="button" @click="substitution(1)">ボタン1</button>
+        <button type="button" @click="substitution(2)">ボタン2</button>
+    </div>
+
+    <div>
+        <h2>$set（変更を検知できるので、ランプは連動する）</h2>
+        <button type="button" @click="useSet(0)">ボタン0</button>
+        <button type="button" @click="useSet(1)">ボタン1</button>
+        <button type="button" @click="useSet(2)">ボタン2</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <span>ランプ</span>
+        <span class="lights" v-bind:class="{ active: buttons[0] }">0</span>
+        <span class="lights" v-bind:class="{ active: buttons[1] }">1</span>
+        <span class="lights" v-bind:class="{ active: buttons[2] }">2</span>
+    </div>
+</main>
+
+<nav>
+    <a href="portal.html">ポータルに戻る</a>
+</nav>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            display: '',
+            buttons: [false, false, false],
+        },
+        updated() {
+            // 配列代入するとリアクティブではないので、updateされないためランプのUIが連動しない
+            // 何かしらでupdateがかかると、それまでのbuttons状態が一気に表示される
+            console.log('UPDATED');
+        },
+        methods: {
+            substitution(num) {
+                // dataの配列にインデックスを指定して代入しても、Vueは変更を検知できない
+                this.buttons[num] = !this.buttons[num];
+                console.log(`[代入] 0:${this.buttons[0]}, 1:${this.buttons[1]}, 2:${this.buttons[2]}`);
+            },
+            useSet(num) {
+                // $setを使うことで、変更を検知できる
+                this.$set(this.buttons, num, !this.buttons[num]);
+                console.log(`[$set] 0:${this.buttons[0]}, 1:${this.buttons[1]}, 2:${this.buttons[2]}`);
+            },
+        },
+    })
+</script>
+</body>
+</html>

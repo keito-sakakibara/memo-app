@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="./favicon.svg">
+    <link rel="stylesheet" href="./memo.css">
+    <title>めもめも</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<main id="app">
+    <div id="memo-post">
+        <input type="text" v-model="currentText">
+        <button v-on:click="postMemo">登録</button>
+        <button v-on:click="clearAll">クリア</button>
+
+    </div>
+    <article>
+        <section v-if="memos.length <= 0">メモがありません</section>
+        <section v-for="memo in memos">
+            <p v-text="memo"></p>
+        </section>
+
+    </article>
+
+
+        
+</main>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            currentText: '',
+            memos:[],
+        },
+        methods: {
+            postMemo() {
+                if (this.currentText.trim() === '') {
+                    return;
+                }
+                this.memos.push(this.currentText);
+                this.currentText = '';
+            },
+            clearAll() {
+                this.memos = [];
+            },
+        },
+
+    });
+</script>
+
+</body>
+</html>

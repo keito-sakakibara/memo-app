@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0 20vw;
+
+    background-color: #e9f4ff;
+}
+
+/* 画面幅が550px以上の場合に適用 */
+@media screen and (max-width: 550px) {
+    body {
+        padding: 0;
+    }
+}
+
+main {
+    background-color: #ffffff;
+}
+
+/* メモ投稿エリア */
+#memo-post {
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    padding: 1rem;
+
+    background-color: rgba(144, 185, 255, 0.5);
+}
+
+#memo-post input[type="text"] {
+    width: 100%;
+}
+
+button {
+    white-space: nowrap;
+}
+
+article {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+}
+
+/*　メモセクション */
+article section {
+    margin: .5rem;
+    padding: 1rem;
+
+    border: 1px solid #626dd2;
+    border-radius: .2rem;
+
+    box-sizing: border-box;
+}
+
+/* メモのテキスト */
+article section p {
+    margin: 0;
+}
+
+article section button {
+    margin-top: .5rem;
+}
